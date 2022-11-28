@@ -1,10 +1,10 @@
 # Data Structure Visualizer
 
-A three day project after I have learn [ReactJS](https://reactjs.org)
+A three day project after I have learned [ReactJS](https://reactjs.org)
 
 ## Dependencies
 
-- [node][https://nodejs.org/en/]
+- [node](https://nodejs.org/en/)
 - [react-toastify](https://www.npmjs.com/package/react-toastify)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)(`5.3.4`)
 - [bootstrap](https://getbootstrap.com)
@@ -28,4 +28,5 @@ A three day project after I have learn [ReactJS](https://reactjs.org)
 ## Others
 
 For app screenshot, checkout [screenshot.md](./screenshot.md).
+
 For contribution, checkout [contribution.md](./contribution.md).
