@@ -4,8 +4,6 @@ import WalkingPerson from "../assets/images/walking-man.png";
 import "../assets/css/queue_container.css";
 
 const QueueContainer = ({ queue }) => {
-
- 
   return (
     <Container>
       <div id="queue-container-diagram" className="flex-c-c">
