@@ -11,4 +11,6 @@
   grid-template: 3fr 1fr /100%;
   justify-content: center;
   align-items: center;
+
+  grid-gap: 0 0;
 }

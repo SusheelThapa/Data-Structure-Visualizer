@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router";
 import HomePage from "./components/HomePage";
 import Stack from "./components/Stack";
 import Queue from "./components/Queue";
-import "./App.css";
+import "./assets/css/App.css";
 
 import { ToastContainer } from "react-toastify";
 function App() {

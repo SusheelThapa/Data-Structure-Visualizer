@@ -11,17 +11,14 @@ const StackContainer = ({ stack }) => {
             000
           </div>
         )}
-        {stack.length > 0 && (
-          <div>
-            {stack.map((stack_data) => {
-              return (
-                <div key={stack_data} className="stack-diagram-data flex-c-c">
-                  {stack_data}
-                </div>
-              );
-            })}
-          </div>
-        )}
+        {stack.length > 0 &&
+          stack.map((stack_data) => {
+            return (
+              <div key={stack_data} className="stack-diagram-data">
+                {stack_data}
+              </div>
+            );
+          })}
       </div>
     </Container>
   );

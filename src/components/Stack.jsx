@@ -22,12 +22,27 @@ class Stack extends Component {
         type: "danger",
       },
     ],
+    max_stack_size: null,
+  };
+
+  setMaxStackSize = () => {
+    const max_stack_size = Math.floor((window.innerHeight * 0.9 * 0.75) / 76);
+
+    this.setState({ max_stack_size });
+  };
+
+  componentDidMount() {
+    this.setMaxStackSize();
+  }
+
+  handleWindowResize = () => {
+    this.setMaxStackSize();
   };
 
   handlePush = () => {
-    const { stack } = this.state;
+    const { stack, max_stack_size } = this.state;
 
-    if (stack.length === 7) {
+    if (stack.length === max_stack_size) {
       toastMessage("Stack is full", "error");
       return;
     }
@@ -70,6 +85,8 @@ class Stack extends Component {
     stack_buttons[0]["handler"] = this.handlePush;
     stack_buttons[1]["handler"] = this.handlePop;
     stack_buttons[2]["handler"] = this.handleReset;
+
+    window.onresize = this.handleWindowResize;
     return (
       <div className="data-structure">
         <StackContainer stack={this.state.stack} />

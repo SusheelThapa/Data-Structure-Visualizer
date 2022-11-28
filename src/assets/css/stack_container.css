@@ -9,20 +9,18 @@
     height: 90%;
     width: 18rem;
 
-    align-items: flex-end;
-
     background-color: rgb(47, 4, 4);
+    flex-direction: column;
+    justify-content: flex-end;
 }
-
 
 .stack-diagram-data {
     margin: 1rem 0;
     margin-bottom: 0;
-    padding: 2rem;
     border-radius: 1rem;
     width: 12rem;
-    height: 5px;
     background-color: blueviolet;
     font-size: 2.5rem;
     color: white;
+    text-align: center;
 }

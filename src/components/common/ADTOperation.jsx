@@ -17,7 +17,7 @@ const ADTOperation = ({ data_type, buttons }) => {
         {data_type} ADT Operation
       </div>
 
-      <div id="buttons" className="m-4">
+      <div id="buttons">
         {buttons.map((button) => {
           return <Button key={button.name} button={button} />;
         })}
