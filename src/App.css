@@ -1,0 +1,14 @@
+.flex-c-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.data-structure {
+  height: 100vh;
+
+  display: grid;
+  grid-template: 3fr 1fr /100%;
+  justify-content: center;
+  align-items: center;
+}

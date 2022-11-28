@@ -1,0 +1,33 @@
+#homepage {
+    padding: 2rem;
+    background-color: #251001;
+
+    height: 100vh;
+    color: #8a2be2;
+
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#homepage>h1 {
+    margin-bottom: 0;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 4px #2b017a;
+}
+
+#homepage>div {
+    margin: 0;
+    flex-direction: column;
+}
+
+#homepage>div img {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 3rem;
+    margin: 1rem;
+}
+
+#homepage>div img:hover {
+    box-shadow: 0 0 2px 5px yellow;
+}

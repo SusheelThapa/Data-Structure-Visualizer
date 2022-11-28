@@ -1,0 +1,26 @@
+#adt-operation {
+    background-color: #22004b;
+}
+
+#buttons-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+
+    color: palevioletred;
+}
+
+#buttons {
+    display: grid;
+    grid-template-areas:
+        "a a b b"
+        "a a b b"
+        "c c d d"
+        "c c d d"
+        "e e f f"
+        "e e f f";
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+
+    grid-gap: 5px, 5px;
+}

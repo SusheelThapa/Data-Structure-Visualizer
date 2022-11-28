@@ -1,0 +1,22 @@
+#queue-container-diagram {
+    border: solid black 10px;
+    border-left: 0;
+    border-right: 0;
+    width: 90%;
+    height: fit-content;
+
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.queue_container_data {
+    flex-direction: column;
+}
+
+.queue_container_data>img {
+    display: block;
+}
+
+.queue_container_data>div {
+    font-size: 1.25rem;
+}
