@@ -27,6 +27,15 @@ class Queue extends Component {
 
   componentDidMount() {
     this.setMaxQueueSize();
+
+    /*Binding the button and their handler*/
+    const queue_buttons = [...this.state.queue_buttons];
+
+    queue_buttons[0]["handler"] = this.handleEnqueue;
+    queue_buttons[1]["handler"] = this.handleDequeue;
+    queue_buttons[2]["handler"] = this.handleReset;
+
+    this.setState({ queue_buttons });
   }
 
   setMaxQueueSize = () => {
@@ -35,6 +44,20 @@ class Queue extends Component {
     */
     const max_queue_size = Math.floor((window.innerWidth * 0.9) / 188);
     this.setState({ max_queue_size });
+
+    /*
+    Checking if the current queue size is greater than new max_queue_size or not
+    If true, we will dequeue the extra element
+    If false, we will leave as it is
+    */
+
+    const extra_element_count = this.state.queue.length - max_queue_size;
+
+    if (extra_element_count > 0) {
+      for (let i = 0; i < extra_element_count; i++) {
+        this.handleDequeue();
+      }
+    }
   };
 
   handleWindowResize = () => {
@@ -50,7 +73,12 @@ class Queue extends Component {
     }
 
     const new_queue = [...queue];
-    const number = generateRandomNumber();
+
+    let number = 0;
+    do {
+      number = generateRandomNumber();
+    } while (queue.indexOf(number) !== -1);
+
     new_queue.push(number);
     this.setState({ queue: new_queue });
 
@@ -79,19 +107,15 @@ class Queue extends Component {
   };
 
   render() {
-    const queue_buttons = [...this.state.queue_buttons];
-
-    queue_buttons[0]["handler"] = this.handleEnqueue;
-    queue_buttons[1]["handler"] = this.handleDequeue;
-    queue_buttons[2]["handler"] = this.handleReset;
-
     /*Triggering resize event handler*/
     window.onresize = this.handleWindowResize;
 
+    const { queue, queue_buttons } = this.state;
+
     return (
       <div className="data-structure">
-        <QueueContainer queue={this.state.queue} />
-        <ADTOperation data_type="Queue" buttons={this.state.queue_buttons} />
+        <QueueContainer queue={queue} />
+        <ADTOperation data_type="Queue" buttons={queue_buttons} />
       </div>
     );
   }

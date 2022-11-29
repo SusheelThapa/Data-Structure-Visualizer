@@ -25,15 +25,37 @@ class Stack extends Component {
     max_stack_size: null,
   };
 
+  componentDidMount() {
+    this.setMaxStackSize();
+
+    const stack_buttons = [...this.state.stack_buttons];
+
+    /*Binding the button and their handler*/
+    stack_buttons[0]["handler"] = this.handlePush;
+    stack_buttons[1]["handler"] = this.handlePop;
+    stack_buttons[2]["handler"] = this.handleReset;
+
+    this.setState({ stack_buttons });
+  }
+
   setMaxStackSize = () => {
+    /*Setting the new max_stack_size*/
     const max_stack_size = Math.floor((window.innerHeight * 0.9 * 0.75) / 76);
 
     this.setState({ max_stack_size });
-  };
 
-  componentDidMount() {
-    this.setMaxStackSize();
-  }
+    /*
+    Checking if the current stack size is greater than new max_stack_size
+    If true, we will pop the extra element
+    If false, we will leave as it it
+    */
+
+    const extra_element_count = this.state.stack.length - max_stack_size;
+
+    if (extra_element_count > 0) {
+      this.handlePop();
+    }
+  };
 
   handleWindowResize = () => {
     this.setMaxStackSize();
@@ -80,17 +102,14 @@ class Stack extends Component {
   };
 
   render() {
-    const stack_buttons = [...this.state.stack_buttons];
-
-    stack_buttons[0]["handler"] = this.handlePush;
-    stack_buttons[1]["handler"] = this.handlePop;
-    stack_buttons[2]["handler"] = this.handleReset;
-
     window.onresize = this.handleWindowResize;
+
+    const { stack, stack_buttons } = this.state;
+
     return (
       <div className="data-structure">
-        <StackContainer stack={this.state.stack} />
-        <ADTOperation data_type="Stack" buttons={this.state.stack_buttons} />
+        <StackContainer stack={stack} />
+        <ADTOperation data_type="Stack" buttons={stack_buttons} />
       </div>
     );
   }
