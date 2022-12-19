@@ -17,17 +17,16 @@ function App() {
         rtl={false}
         theme="colored"
       />
+      
       <Switch>
         <Route path="/stack">
-          <Stack>
-            <div>The is homepage</div>
-          </Stack>
+          <Stack />
         </Route>
         <Route path="/queue">
           <Queue />
         </Route>
         <Route path="/">
-          <HomePage></HomePage>
+          <HomePage />
         </Route>
       </Switch>
     </React.Fragment>
