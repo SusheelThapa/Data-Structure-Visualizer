@@ -36,3 +36,15 @@
 .data-structure .row .col {
   margin: 0;
 }
+
+.queue .row:nth-child(1) {
+  min-height: 75vh;
+
+
+}
+
+.queue .row:nth-child(2) {
+  min-height: 25vh;
+
+
+}

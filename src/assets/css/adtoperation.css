@@ -7,10 +7,19 @@
     color: salmon;
 }
 
-#buttons {
+.buttons {
     padding: 10px 0px;
-    
     display: flex;
+
+}
+
+#Stack {
     flex-direction: column;
+    align-items: center;
+}
+
+#Queue {
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
 }
