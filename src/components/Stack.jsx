@@ -35,6 +35,11 @@ class Stack extends Component {
         type: "info",
       },
       {
+        id: "stacksize",
+        name: "Stack Size",
+        type: "info",
+      },
+      {
         id: "reset",
         name: "Reset",
         type: "danger",
@@ -91,6 +96,8 @@ class Stack extends Component {
       return this.handleIsFull;
     } else if (id === "isempty") {
       return this.handleIsEmpty;
+    } else if (id === "stacksize") {
+      return this.handleStackSize;
     }
   };
 
@@ -146,6 +153,13 @@ class Stack extends Component {
 
   handleTop = () => {
     toastMessage(`The top of the index is ${this.state.stack[0]}`, "info");
+  };
+
+  handleStackSize = () => {
+    toastMessage(
+      `The size of the stack is ${this.state.stack.length}.`,
+      "info"
+    );
   };
 
   handleReset = () => {
