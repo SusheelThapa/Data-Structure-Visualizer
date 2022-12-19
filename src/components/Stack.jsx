@@ -10,14 +10,37 @@ class Stack extends Component {
     stack: [],
     stack_buttons: [
       {
+        id: "push",
         name: "Push",
         type: "primary",
       },
       {
+        id: "pop",
         name: "Pop",
         type: "primary",
       },
       {
+        id: "top",
+        name: "Top",
+        type: "info",
+      },
+      {
+        id: "isfull",
+        name: "isFull",
+        type: "info",
+      },
+      {
+        id: "isempty",
+        name: "isEmpty",
+        type: "info",
+      },
+      {
+        id: "stacksize",
+        name: "Stack Size",
+        type: "info",
+      },
+      {
+        id: "reset",
         name: "Reset",
         type: "danger",
       },
@@ -31,24 +54,23 @@ class Stack extends Component {
     const stack_buttons = [...this.state.stack_buttons];
 
     /*Binding the button and their handler*/
-    stack_buttons[0]["handler"] = this.handlePush;
-    stack_buttons[1]["handler"] = this.handlePop;
-    stack_buttons[2]["handler"] = this.handleReset;
+    for (let button of stack_buttons) {
+      button["handler"] = this.getButtonHandler(button.id);
+    }
 
     this.setState({ stack_buttons });
   }
 
   setMaxStackSize = () => {
     /*Setting the new max_stack_size*/
-    const max_stack_size = Math.floor((window.innerHeight * 0.9 * 0.75) / 76);
+
+    const total_stack_container_height = window.innerHeight * 0.9;
+    const stack_element_size = total_stack_container_height * 0.09 + 20;
+    const max_stack_size = Math.floor(
+      total_stack_container_height / stack_element_size
+    );
 
     this.setState({ max_stack_size });
-
-    /*
-    Checking if the current stack size is greater than new max_stack_size
-    If true, we will pop the extra element
-    If false, we will leave as it it
-    */
 
     const extra_element_count = this.state.stack.length - max_stack_size;
 
@@ -59,6 +81,24 @@ class Stack extends Component {
 
   handleWindowResize = () => {
     this.setMaxStackSize();
+  };
+
+  getButtonHandler = (id) => {
+    if (id === "push") {
+      return this.handlePush;
+    } else if (id === "pop") {
+      return this.handlePop;
+    } else if (id === "reset") {
+      return this.handleReset;
+    } else if (id === "top") {
+      return this.handleTop;
+    } else if (id === "isfull") {
+      return this.handleIsFull;
+    } else if (id === "isempty") {
+      return this.handleIsEmpty;
+    } else if (id === "stacksize") {
+      return this.handleStackSize;
+    }
   };
 
   handlePush = () => {
@@ -78,7 +118,7 @@ class Stack extends Component {
     new_stack.unshift(number);
     this.setState({ stack: new_stack });
 
-    toastMessage(`Pushed ${number} to stack`);
+    toastMessage(`Pushed ${number} to stack`, "success");
   };
 
   handlePop = () => {
@@ -92,13 +132,40 @@ class Stack extends Component {
     const popped = new_stack.shift();
     this.setState({ stack: new_stack });
 
-    toastMessage(`Poped ${popped} from stack`);
+    toastMessage(`Poped ${popped} from stack`, "success");
+  };
+
+  handleIsFull = () => {
+    const { stack, max_stack_size } = this.state;
+
+    stack.length === max_stack_size
+      ? toastMessage("Stack is Full", "info")
+      : toastMessage("Stack isn't Full", "info");
+  };
+
+  handleIsEmpty = () => {
+    const { stack } = this.state;
+
+    stack.length === 0
+      ? toastMessage("Stack is empty", "info")
+      : toastMessage("Stack isn't empty", "info");
+  };
+
+  handleTop = () => {
+    toastMessage(`The top of the index is ${this.state.stack[0]}`, "info");
+  };
+
+  handleStackSize = () => {
+    toastMessage(
+      `The size of the stack is ${this.state.stack.length}.`,
+      "info"
+    );
   };
 
   handleReset = () => {
     this.setState({ stack: [] });
 
-    toastMessage("Stack has been reset");
+    toastMessage("Stack has been reset", "success");
   };
 
   render() {
@@ -107,9 +174,15 @@ class Stack extends Component {
     const { stack, stack_buttons } = this.state;
 
     return (
-      <div className="data-structure">
-        <StackContainer stack={stack} />
-        <ADTOperation data_type="Stack" buttons={stack_buttons} />
+      <div className="container text-center data-structure" id="stack">
+        <div className="row">
+          <div className="col">
+            <ADTOperation data_type={"Stack"} buttons={stack_buttons} />
+          </div>
+          <div className="col-9   flex-c-c">
+            <StackContainer stack={stack} />
+          </div>
+        </div>
       </div>
     );
   }

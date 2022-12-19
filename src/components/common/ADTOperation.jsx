@@ -12,17 +12,17 @@ const addButtonClass = (buttons) => {
 const ADTOperation = ({ data_type, buttons }) => {
   addButtonClass(buttons);
   return (
-    <div id="adt-operation">
+    <React.Fragment>
       <div id="buttons-heading" className="flex-c-c">
-        {data_type} ADT Operation
+        {data_type} Operation
       </div>
 
-      <div id="buttons">
+      <div class="buttons" id={data_type}>
         {buttons.map((button) => {
           return <Button key={button.name} button={button} />;
         })}
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

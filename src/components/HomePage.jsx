@@ -6,9 +6,9 @@ import "../assets/css/homepage.css";
 
 const HomePage = () => {
   return (
-    <div id="homepage" className="flex-c-c">
+    <div id="homepage">
       <h1 className="flex-c-c">Choose Data Structure to visualize...</h1>
-      <div className="flex-c-c">
+      <div>
         <Link to="/stack">
           <img src={StackImage} alt="queue of people"></img>
         </Link>

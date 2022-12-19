@@ -5,6 +5,8 @@
     width: 90%;
     height: fit-content;
 
+    background-color: steelblue;
+
     flex-direction: row-reverse;
     justify-content: flex-start;
 }
@@ -18,5 +20,7 @@
 }
 
 .queue_container_data>div {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: white;
 }

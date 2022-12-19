@@ -10,14 +10,37 @@ class Queue extends Component {
     queue: [],
     queue_buttons: [
       {
+        id: "enqueue",
         name: "Enqueue",
         type: "primary",
       },
       {
+        id: "dequeue",
         name: "Dequeue",
         type: "primary",
       },
       {
+        id: "isfull",
+        name: "isFull",
+        type: "info",
+      },
+      {
+        id: "isempty",
+        name: "isEmpty",
+        type: "info",
+      },
+      {
+        id: "front",
+        name: "Front",
+        type: "info",
+      },
+      {
+        id: "queuesize",
+        name: "Queue Size",
+        type: "info",
+      },
+      {
+        id: "reset",
         name: "Reset",
         type: "danger",
       },
@@ -31,9 +54,10 @@ class Queue extends Component {
     /*Binding the button and their handler*/
     const queue_buttons = [...this.state.queue_buttons];
 
-    queue_buttons[0]["handler"] = this.handleEnqueue;
-    queue_buttons[1]["handler"] = this.handleDequeue;
-    queue_buttons[2]["handler"] = this.handleReset;
+    /*Binding the button and their handler*/
+    for (let button of queue_buttons) {
+      button["handler"] = this.getButtonHandler(button.id);
+    }
 
     this.setState({ queue_buttons });
   }
@@ -64,6 +88,24 @@ class Queue extends Component {
     this.setMaxQueueSize();
   };
 
+  getButtonHandler = (id) => {
+    if (id === "enqueue") {
+      return this.handleEnqueue;
+    } else if (id === "dequeue") {
+      return this.handleDequeue;
+    } else if (id === "reset") {
+      return this.handleReset;
+    } else if (id === "front") {
+      return this.handleFront;
+    } else if (id === "isfull") {
+      return this.handleIsFull;
+    } else if (id === "isempty") {
+      return this.handleIsEmpty;
+    } else if (id === "queuesize") {
+      return this.handleQueueSize;
+    }
+  };
+
   handleEnqueue = () => {
     const { queue, max_queue_size } = this.state;
 
@@ -82,7 +124,7 @@ class Queue extends Component {
     new_queue.push(number);
     this.setState({ queue: new_queue });
 
-    toastMessage(`Enqueue ${number} person in queue`);
+    toastMessage(`Enqueue ${number} person in queue`, "success");
   };
 
   handleDequeue = () => {
@@ -97,13 +139,42 @@ class Queue extends Component {
     const dequeue_person_number = new_queue.shift();
     this.setState({ queue: new_queue });
 
-    toastMessage(`Dequeue ${dequeue_person_number} person from queue`);
+    toastMessage(
+      `Dequeue ${dequeue_person_number} person from queue`,
+      "success"
+    );
+  };
+  handleIsFull = () => {
+    const { queue, max_queue_size } = this.state;
+
+    queue.length === max_queue_size
+      ? toastMessage("Queue is Full", "info")
+      : toastMessage("Queue isn't Full", "info");
+  };
+
+  handleIsEmpty = () => {
+    const { queue } = this.state;
+
+    queue.length === 0
+      ? toastMessage("Queue is empty", "info")
+      : toastMessage("Queue isn't empty", "info");
+  };
+
+  handleFront = () => {
+    toastMessage(`Person ${this.state.queue[0]} is in front`, "info");
+  };
+
+  handleQueueSize = () => {
+    toastMessage(
+      `The size of the queue is ${this.state.max_queue_size}.`,
+      "info"
+    );
   };
 
   handleReset = () => {
     this.setState({ queue: [] });
 
-    toastMessage("Queue is reset.");
+    toastMessage("Queue has been reset.", "success");
   };
 
   render() {
@@ -113,9 +184,17 @@ class Queue extends Component {
     const { queue, queue_buttons } = this.state;
 
     return (
-      <div className="data-structure">
-        <QueueContainer queue={queue} />
-        <ADTOperation data_type="Queue" buttons={queue_buttons} />
+      <div className="container text-center data-structure" id="queue">
+        <div className="row ">
+          <div className="col flex-c-c">
+            <QueueContainer queue={queue} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <ADTOperation data_type="Queue" buttons={queue_buttons} />
+          </div>
+        </div>
       </div>
     );
   }
