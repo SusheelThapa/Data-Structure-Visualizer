@@ -6,6 +6,10 @@
     width: 80%;
 }
 
+.buttons button:hover {
+    box-shadow: 0 0 1px 5px white;
+}
+
 #buttons button:nth-child(1) {
     grid-area: a;
 }
