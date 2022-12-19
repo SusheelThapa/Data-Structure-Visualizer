@@ -23,7 +23,16 @@
   min-height: 100vh;
 }
 
-.data-structure .row div:nth-child(1) {
+.data-structure .row>div:nth-child(1) {
   background-color: #22004b;
   height: inherit;
+}
+
+.data-structure .row>div:nth-child(2) {
+  background-color: #01015df7;
+  height: inherit;
+}
+
+.data-structure .row .col {
+  margin: 0;
 }
