@@ -18,6 +18,18 @@ class Stack extends Component {
         type: "primary",
       },
       {
+        name: "Top",
+        type: "info",
+      },
+      {
+        name: "isFull",
+        type: "info",
+      },
+      {
+        name: "isEmpty",
+        type: "info",
+      },
+      {
         name: "Reset",
         type: "danger",
       },
@@ -107,9 +119,13 @@ class Stack extends Component {
     const { stack, stack_buttons } = this.state;
 
     return (
-      <div className="data-structure">
-        <StackContainer stack={stack} />
-        <ADTOperation data_type="Stack" buttons={stack_buttons} />
+      <div className="container text-center data-structure">
+        <div className="row">
+          <div className="col ">
+            <ADTOperation data_type={"Stack"} buttons={stack_buttons} />
+          </div>
+          <div className="col-9">This is stack overview</div>
+        </div>
       </div>
     );
   }

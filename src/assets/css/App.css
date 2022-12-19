@@ -4,13 +4,26 @@
   align-items: center;
 }
 
+
+
+.border-red {
+  border: solid red 3px;
+}
+
 .data-structure {
-  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+}
 
-  display: grid;
-  grid-template: 3fr 1fr /100%;
-  justify-content: center;
-  align-items: center;
+.data-structure .row {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
 
-  grid-gap: 0 0;
+.data-structure .row div:nth-child(1) {
+  background-color: #22004b;
+  height: inherit;
 }
