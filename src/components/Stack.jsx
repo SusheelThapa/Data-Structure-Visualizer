@@ -160,7 +160,7 @@ class Stack extends Component {
     const { stack, stack_buttons } = this.state;
 
     return (
-      <div className="container text-center data-structure">
+      <div className="container text-center data-structure" id="stack">
         <div className="row">
           <div className="col">
             <ADTOperation data_type={"Stack"} buttons={stack_buttons} />

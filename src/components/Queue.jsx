@@ -184,9 +184,9 @@ class Queue extends Component {
     const { queue, queue_buttons } = this.state;
 
     return (
-      <div className="container text-center data-structure queue">
-        <div className="row">
-          <div className="col">
+      <div className="container text-center data-structure" id="queue">
+        <div className="row ">
+          <div className="col flex-c-c">
             <QueueContainer queue={queue} />
           </div>
         </div>
