@@ -1,9 +1,9 @@
 #homepage {
     padding: 2rem;
-    background-color: #251001;
+    background-color: #036;
 
     height: 100vh;
-    color: #8a2be2;
+    color: #cf0;
     display: flex;
     flex-direction: column;
 }
